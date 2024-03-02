@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import reactLogo from "../../assets/react.svg";
 import "./App.css";
 import Description from "../Description/Description";
@@ -13,14 +13,25 @@ function App() {
     bad: 0,
   };
 
-  const [clicks, setClicks] = useState(clicksData);
+  const [clicks, setClicks] = useState(() => {
+    const savedClicks = window.localStorage.getItem("saved-clicks");
+
+    if (savedClicks !== null) {
+      return JSON.parse(savedClicks);
+    } else {
+      return clicksData;
+    }
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem("saved-clicks", JSON.stringify(clicks));
+  }, [clicks]);
 
   const updateFeedback = (feedbackType) => {
     setClicks((clicks) => ({
       ...clicks,
       [feedbackType]: clicks[feedbackType] + 1,
     }));
-    // console.log(clicks);
   };
 
   const resetFeedback = () => {

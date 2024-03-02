@@ -1,6 +1,8 @@
+import css from "./Options.module.css";
+
 const Options = ({ updateFeedback, totalClicks, resetFeedback }) => {
   return (
-    <ul>
+    <ul className={css.optionList}>
       <li>
         <button
           onClick={() => {

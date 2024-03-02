@@ -23,6 +23,10 @@ function App() {
     // console.log(clicks);
   };
 
+  const resetFeedback = () => {
+    setClicks(clicksData);
+  };
+
   const totalFeedback = clicks.good + clicks.neutral + clicks.bad;
 
   const positiveValue = Math.round(
@@ -33,7 +37,11 @@ function App() {
     <>
       <div>
         <Description />
-        <Options updateFeedback={updateFeedback} totalClicks={totalFeedback} />
+        <Options
+          updateFeedback={updateFeedback}
+          totalClicks={totalFeedback}
+          resetFeedback={resetFeedback}
+        />
         {totalFeedback <= 0 ? (
           <Notification />
         ) : (

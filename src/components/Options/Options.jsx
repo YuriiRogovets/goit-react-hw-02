@@ -1,4 +1,4 @@
-const Options = ({ updateFeedback, totalClicks }) => {
+const Options = ({ updateFeedback, totalClicks, resetFeedback }) => {
   return (
     <ul>
       <li>
@@ -23,7 +23,9 @@ const Options = ({ updateFeedback, totalClicks }) => {
       </li>
       {totalClicks > 0 && (
         <li>
-          <button type="buttton">Reset</button>
+          <button onClick={() => resetFeedback()} type="buttton">
+            Reset
+          </button>
         </li>
       )}
     </ul>
